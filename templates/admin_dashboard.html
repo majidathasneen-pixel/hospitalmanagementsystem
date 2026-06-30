@@ -1,0 +1,313 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <h2>Admin Panel</h2>
+
+        <ul>
+
+            <li><a href="{% url 'doctor_list' %}">👨‍⚕️ Doctors</a></li>
+
+            <li><a href="{% url 'patient_list' %}">👥 Patients</a></li>
+
+            <li><a href="{% url 'appointment_list' %}">📅 Appointments</a></li>
+
+            <li><a href="{% url 'prescription' %}">💊 Prescriptions</a></li>
+
+            <li><a href="{% url 'medical_records' %}">📄 Medical Records</a></li>
+
+            <li>
+                <a href="{% url 'admin_profile' %}">
+                  ⚙️ Profile Settings
+                </a>
+            </li>
+
+            <li><a href="{% url 'logout' %}">🚪 Logout</a></li>
+
+        </ul>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <h1>Admin Dashboard</h1>
+
+        <!-- Search -->
+        <form method="GET" class="admin-search">
+
+            <input
+                type="text"
+                name="q"
+                placeholder="Search doctors, patients, appointments..."
+                value="{{ request.GET.q }}">
+
+            <button type="submit"> Search</button>
+
+        </form>
+
+        <!-- Dashboard Cards -->
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Doctors</h3>
+                <h1>{{ doctor_count }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Total Patients</h3>
+                <h1>{{ patient_count }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Total Appointments</h3>
+                <h1>{{ appointment_count }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Total Prescriptions</h3>
+                <h1>{{ prescription_count }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Medical Records</h3>
+                <h1>{{ medical_count }}</h1>
+            </div>
+
+        </div>
+
+        <!-- Chart + Calendar -->
+        <div class="dashboard-row">
+
+            <div class="chart-card">
+
+                <h2>Hospital Statistics</h2>
+
+                <canvas id="hospitalChart"></canvas>
+
+            </div>
+
+            <div class="calendar-card">
+
+                <h2>Appointment Calendar</h2>
+
+                 <div id="calendar"></div>
+
+            </div>
+
+        </div>
+
+        <!-- Recent Appointments -->
+        <div class="table-card">
+
+            <h2>Recent Appointments</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Patient</th>
+
+                        <th>Doctor</th>
+
+                        <th>Date</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for appointment in appointments %}
+
+                    <tr>
+
+                        <td>{{ appointment.patient }}</td>
+
+                        <td>{{ appointment.doctor }}</td>
+
+                        <td>{{ appointment.appointment_date }}</td>
+
+                        <td>{{ appointment.status }}</td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="4">No appointments available.</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ===============================
+       Hospital Statistics Chart
+    ================================ */
+
+    const ctx = document.getElementById("hospitalChart");
+
+    new Chart(ctx, {
+
+        type: "bar",
+
+        data: {
+
+            labels: [
+
+                "Doctors",
+
+                "Patients",
+
+                "Appointments",
+
+                "Prescriptions",
+
+                "Medical Records"
+
+            ],
+
+            datasets: [{
+
+                label: "Hospital Statistics",
+
+                data: [
+
+                    {{ doctor_count }},
+
+                    {{ patient_count }},
+
+                    {{ appointment_count }},
+
+                    {{ prescription_count }},
+
+                    {{ medical_count }}
+
+                ],
+
+                backgroundColor: [
+
+                    "#3498db",
+
+                    "#2ecc71",
+
+                    "#f39c12",
+
+                    "#9b59b6",
+
+                    "#e74c3c"
+
+                ],
+
+                borderRadius:10
+
+            }]
+
+        },
+
+        options: {
+
+            responsive:true,
+
+            maintainAspectRatio:false,
+
+            plugins:{
+
+                legend:{
+
+                    display:false
+
+                }
+
+            }
+
+        }
+
+    });
+
+
+
+
+    /* ===============================
+       Appointment Calendar
+    ================================ */
+
+    var calendarEl = document.getElementById("calendar");
+
+    if(calendarEl){
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+
+            initialView: "dayGridMonth",
+
+            height: 500,
+
+            headerToolbar: {
+
+                left: "prev,next today",
+
+                center: "title",
+
+                right: "dayGridMonth,timeGridWeek"
+
+            },
+
+            events: [
+
+                {% for appointment in appointments %}
+
+                {
+
+                    title: "{{ appointment.patient }}",
+
+                    start: "{{ appointment.appointment_date|date:'Y-m-d' }}",
+
+                    color: "#2563eb"
+
+                },
+
+                {% endfor %}
+
+            ]
+
+        });
+
+        calendar.render();
+
+    }
+
+});
+
+</script>
+
+
+
+
+{% endblock %} 

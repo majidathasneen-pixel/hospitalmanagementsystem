@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="detail-container">
+
+    <img src="{% static 'images/cardiology.webp' %}"
+         class="detail-image">
+
+    <h1>Cardiology Department</h1>
+
+    <p>
+
+        The Cardiology Department provides
+        diagnosis and treatment for heart
+        and blood vessel diseases.
+
+    </p>
+
+    <h2>Department Doctors</h2>
+
+    <div class="doctor-list">
+
+        <div class="doctor-box">
+
+            <img src="{% static 'images/dctr1.jpg' %}">
+
+            <h4>Dr. John Smith</h4>
+
+        </div>
+
+        <div class="doctor-box">
+
+            <img src="{% static 'images/dctr2.jpg' %}">
+
+            <h4>Dr. David Wilson</h4>
+
+        </div>
+
+    </div>
+
+    <a href="/appointment/" class="btn">
+        Book Appointment
+    </a>
+
+</div>
+
+{% endblock %}

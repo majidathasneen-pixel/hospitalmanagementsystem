@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Patients List</h2>
+
+<a href="{% url 'add_patient' %}">
+    Add Patient
+</a>
+
+<table border="1">
+
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        
+    </tr>
+
+    {% for patient in patients %}
+    <tr>
+        <td>{{ patient.id }}</td>
+        <td>{{ patient.name }}</td>
+        <td>{{ patient.phone }}</td>
+        <td>{{ patient.email }}</td>
+
+        <td>
+            <a href="{% url 'edit_patient' patient.id %}">
+                Edit
+            </a>
+
+            <a href="{% url 'delete_patient' patient.id %}">
+                Delete
+            </a>
+        </td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

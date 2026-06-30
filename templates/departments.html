@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="departments-banner">
+
+<h1>Medical Departments</h1>
+<p> Expert care across multiple specialities
+    
+</p>
+
+<div class="department-grid">
+
+    <!-- Cardiology -->
+     <div class="department-card">
+
+    <img src="{% static 'images/cardiolegy.webp' %}" alt="Cardiology">
+
+    <h2>general medicine</h2>
+    <p>Provides primary care for patients and refers them to specialists when needed</p>
+
+    <h4>Doctors</h4>
+    <ul>
+        <li>Dr. John Smith</li>
+        
+    </ul>
+
+
+
+
+    <a href="{% url 'appointment' %}" class="btn">
+        Book Appointment
+    </a>
+
+</div>
+    
+
+    <!-- Neurology -->
+    <div class="department-card">
+        <img src="{% static 'images/neurolegy.webp' %}">
+        <h2>Neurology</h2>
+        <p>Diagnosis and treatment of brain and nerve disorders.</p>
+
+        <h4>Doctors</h4>
+        <ul>
+            <li>Dr. David Wilson</li>
+            
+        </ul>
+
+        <a href="{% url 'appointment' %}" class="btn">
+            Book Appointment
+        </a>
+    </div>
+
+    <!-- Orthopedics -->
+    <div class="department-card">
+        <img src="{% static 'images/orthopedics.webp' %}">
+        <h2>Orthopedics</h2>
+        <p>Treatment of bone, joint and muscle conditions.</p>
+
+        <h4>Doctors</h4>
+        <ul>
+            <li>Dr. Sarah Brown</li>
+        </ul>
+
+        <a href="{% url 'appointment' %}" class="btn">
+            Book Appointment
+        </a>
+    </div>
+
+    <!-- Pediatrics -->
+    <div class="department-card">
+        <img src="{% static 'images/pediatrics.webp' %}">
+        <h2>Pediatrics</h2>
+        <p>Healthcare services for infants and children.</p>
+
+        <h4>Doctors</h4>
+        <ul>
+            <li>Dr. Emily Johnson</li>
+            
+        </ul>
+
+        <a href="{% url 'appointment' %}" class="btn">
+            Book Appointment
+        </a>
+    </div>
+
+    
+
+    <!-- Emergency -->
+    <div class="department-card">
+        <img src="{% static 'images/emergency.webp' %}">
+        <h2>Emergency Care</h2>
+        <p>24/7 emergency medical services.</p>
+
+        <h4>⏰ Availability</h4>
+        <p>24 Hours a Day | 7 Days a Week</p>
+
+        <a href="{% url 'appointment' %}" class="btn">
+           Book Appointment
+        </a>
+    
+
+       
+    </div>
+
+</div>
+
+</section>
+
+{% endblock %}

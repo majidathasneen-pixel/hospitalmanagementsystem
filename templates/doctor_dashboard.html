@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="doctor-profile">
+
+            {% if doctor.photo %}
+                <img src="{{ doctor.photo.url }}" alt="Doctor">
+            {% endif %}
+
+            <h3>Dr. {{ doctor.name }}</h3>
+            <p>{{ doctor.specialization }}</p>
+
+        </div>
+
+        <ul class="menu">
+
+            <li><a href="{% url 'doctor_dashboard' %}">🏠 Dashboard</a></li>
+            <li><a href="{% url 'appointment_list' %}">📅 Appointments</a></li>
+            <li><a href="{% url 'prescription' %}">💊 Prescriptions</a></li>
+            <li><a href="{% url 'medical_records' %}">📄 Medical Records</a></li>
+            <li><a href="{% url 'profile_settings' %}">⚙ Profile Settings</a></li>
+            <li><a href="{% url 'logout' %}">🚪 Logout</a></li>
+
+        </ul>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <h1>Doctor Dashboard</h1>
+
+        <!-- ✅ SINGLE WORKING SEARCH BAR -->
+        <form method="GET" class="search-form">
+            <input type="text" name="q" placeholder="Search patients...">
+            <button type="submit">Search</button>
+        </form>
+
+        <hr>
+
+
+        <!-- DASHBOARD CARDS -->
+        <div class="dashboard-cards">
+
+            <div class="card">
+                <div class="icon">👨‍⚕️</div>
+                <div>
+                    <h4>Total Patients</h4>
+                    <h2>{{ patient_count }}</h2>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="icon">📅</div>
+                <div>
+                    <h4>Total Appointments</h4>
+                    <h2>{{ appointment_count }}</h2>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="icon">📄</div>
+                <div>
+                    <h4>Medical Records</h4>
+                    <h2>{{ medical_count }}</h2>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- APPOINTMENTS TABLE -->
+        <div class="table-box">
+
+            <h2>Appointments</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                {% for appointment in appointments %}
+
+                    <tr>
+                        <td>{{ appointment.patient.name }}</td>
+                        <td>{{ appointment.doctor.name }}</td>
+                        <td>{{ appointment.appointment_date }}</td>
+                        <td>{{ appointment.status }}</td>
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+                        <td colspan="4">No appointments available.</td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+{% endblock %}

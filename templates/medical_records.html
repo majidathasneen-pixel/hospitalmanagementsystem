@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="table-container">
+
+    <div class="table-header">
+
+        <h2>Medical Records</h2>
+
+        {% if request.user.is_staff or request.user.is_superuser or is_doctor %}
+
+        <a href="{% url 'add_medical_record' %}" class="add-btn">
+            ➕ Add Medical Record
+        </a>
+
+        {% endif %}
+
+    </div>
+
+    <input type="text"
+           id="searchInput"
+           placeholder=" Search Patient..."
+           onkeyup="searchTable()"
+           class="search-box">
+
+    <table id="medicalTable">
+
+        <thead>
+
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Diagnosis</th>
+                <th>Prescription</th>
+                <th>Date</th>
+
+                {% if request.user.is_staff or request.user.is_superuser or is_doctor %}
+                <th>Actions</th>
+                {% endif %}
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for record in records %}
+
+            <tr>
+
+                <td>{{ record.patient.name }}</td>
+                <td>{{ record.doctor.name }}</td>
+                <td>{{ record.diagnosis }}</td>
+                <td>{{ record.prescription }}</td>
+                <td>{{ record.created_at|date:"d-m-Y" }}</td>
+
+                {% if request.user.is_staff or request.user.is_superuser or is_doctor %}
+
+                <td>
+
+                    <a href="{% url 'edit_medical_record' record.id %}" class="edit-btn">
+                        ✏ Edit
+                    </a>
+
+                    <a href="{% url 'delete_medical_record' record.id %}" class="delete-btn">
+                        🗑 Delete
+                    </a>
+
+                </td>
+
+                {% endif %}
+
+            </tr>
+
+        {% empty %}
+
+            <tr>
+                <td colspan="6">No medical records found</td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script>
+function searchTable() {
+    let input = document.getElementById("searchInput").value.toUpperCase();
+    let table = document.getElementById("medicalTable");
+    let tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            let txt = td.textContent || td.innerText;
+            tr[i].style.display = txt.toUpperCase().indexOf(input) > -1 ? "" : "none";
+        }
+    }
+}
+</script>
+
+{% endblock %}

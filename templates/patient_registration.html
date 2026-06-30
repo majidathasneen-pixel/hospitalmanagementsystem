@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h1>Patient Registration</h1>
+
+    <script>
+    setTimeout(function () {
+        const alert = document.querySelector('.success-message');
+        if (alert) {
+            alert.style.display = 'none';
+        }
+    }, 3000);
+    </script>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="success-message" style="background:#d4edda;color:#155724;padding:15px;border-radius:8px;border-left:6px solid #28a745;margin-bottom:20px;text-align:center;font-weight:bold;">
+                ✅ {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>Full Name</label>
+        {{ form.name }}
+
+        <label>Phone Number</label>
+        {{ form.phone }}
+
+        <label>Email Address</label>
+        {{ form.email }}
+
+        <label>Address</label>
+        {{ form.address }}
+
+        <label>Username</label>
+        {{ form.username }}
+
+        <label>Password</label>
+        {{ form.password }}
+
+        <label>Confirm Password</label>
+        {{ form.confirm_password }}
+
+        {% if form.errors %}
+            <div style="color:red; margin-top:15px;">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+
+        <button type="submit">
+            Register Patient
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

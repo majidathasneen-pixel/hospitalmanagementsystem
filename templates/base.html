@@ -1,0 +1,175 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CityCare Hospital</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header>
+
+    <div class="logo">
+        <i class="fa-solid fa-hospital"></i>
+        CityCare Hospital
+    </div>
+
+    <nav>
+
+        <ul class="nav-links">
+
+            <li><a href="/">Home</a></li>
+
+            <li><a href="/about/">About</a></li>
+
+            <li><a href="/departments/">Departments</a></li>
+
+            <li><a href="/doctors/">Doctors</a></li>
+
+            <li><a href="/#contact">Contact</a></li>
+
+            <li class="dropdown">
+
+                <a href="#">Login ▼</a>
+
+                <ul class="dropdown-menu">
+
+                    <li>
+                        <a href="{% url 'admin_login' %}">
+                            Admin Login
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'doctor_login' %}">
+                            Doctor Login
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'patient_login' %}">
+                            Patient Login
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+<!-- =========================
+     PAGE CONTENT
+========================= -->
+
+{% block content %}
+{% endblock %}
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+{% if request.path == '/' or request.path == '/contact/' %}
+
+<footer class="footer" id="contact">
+
+    <div class="footer-container">
+
+        <div class="footer-column">
+            
+            <h2>
+                <i class="fa-regular fa-heart"></i>
+                CityCare
+            </h2>
+
+            <p>
+                Digital healthcare management for modern hospitals.
+            </p>
+
+        </div>
+
+        <div class="footer-column">
+
+            <h3>Quick Links</h3>
+
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/departments/">Departments</a>
+            <a href="/doctors/">Doctors</a>
+
+        </div>
+
+        <div class="footer-column">
+
+            <h3>Contact Us</h3>
+
+            <p><i class="fa-solid fa-location-dot"></i> 123 Healthcare Avenue, Kerala</p>
+
+            <p><i class="fa-solid fa-phone"></i> +91 9876543210</p>
+
+            <p><i class="fa-solid fa-envelope"></i> hospital@gmail.com</p>
+
+        </div>
+
+        <div class="footer-column">
+
+            <h3>Hospital Hours</h3>
+
+            <p>Monday - Friday : 24/7</p>
+
+            <p>Saturday : 24/7</p>
+
+            <p>Sunday : 24/7</p>
+
+            <p>Emergency Services Always Open</p>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 CityCare Hospital Management System.
+            All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+{% endif %}
+
+<!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+
+</body>
+
+</html>

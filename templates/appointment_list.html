@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="table-container">
+
+    <div class="table-header">
+
+        <h2>Appointment List</h2>
+
+        <a href="{% url 'add_appointment' %}" class="add-btn">
+            ➕ Add Appointment
+        </a>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Appointment Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for appointment in appointments %}
+
+            <tr>
+
+                <td>{{ appointment.patient.name }}</td>
+
+                <td>Dr. {{ appointment.doctor.name }}</td>
+
+                <td>{{ appointment.appointment_date }}</td>
+
+                <td>
+
+                    {% if appointment.status == "Pending" %}
+                        <span class="pending">🟡 Pending</span>
+
+                    {% elif appointment.status == "Approved" %}
+                        <span class="approved">🟢 Approved</span>
+
+                    {% else %}
+                        <span class="cancelled">🔴 Cancelled</span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if appointment.status == "Pending" %}
+
+                    <a href="{% url 'approve_appointment' appointment.id %}" class="approve-btn">
+                        ✅ Approve
+                    </a>
+
+                    <a href="{% url 'cancel_appointment' appointment.id %}" class="cancel-btn">
+                        ❌ Cancel
+                    </a>
+
+                    {% endif %}
+
+                    <a href="{% url 'edit_appointment' appointment.id %}" class="edit-btn">
+                        ✏ Edit
+                    </a>
+
+                    <a href="{% url 'delete_appointment' appointment.id %}" class="delete-btn"
+                       onclick="return confirm('Are you sure you want to delete this appointment?');">
+                        🗑 Delete
+                    </a>
+
+                </td>
+
+            </tr>
+
+        {% empty %}
+
+            <tr>
+
+                <td colspan="5" style="text-align:center;">
+                    No appointments found.
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

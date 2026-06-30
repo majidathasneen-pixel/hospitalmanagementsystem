@@ -1,0 +1,317 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= HERO SECTION ================= -->
+
+<section class="hero">
+
+    <div class="hero-image">
+        <img src="{% static 'images/hospital.jpg' %}" alt="Hospital">
+    </div>
+
+    <div class="hero-content">
+
+        <h1>Your Health,<br>Our Priority</h1>
+
+        <p>
+            Modern Hospital Management System providing comprehensive
+            healthcare services with digital efficiency. Manage
+            appointments, medical records, doctors and patient care
+            all in one place.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{% url 'appointment' %}" class="btn-primary">
+                <i class="fa-solid fa-calendar-check"></i>
+                Book Appointment
+            </a>
+
+            <a href="{% url 'patient_registration' %}" class="btn-secondary">
+                <i class="fa-solid fa-user-plus"></i>
+                Patient Registration
+            </a>
+
+        </div>
+
+        <div class="hero-info">
+
+            <div class="info-box">
+                <i class="fa-solid fa-user-doctor"></i>
+                <div>
+                    <h4>Expert Doctors</h4>
+                    <p>Highly Qualified</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <i class="fa-solid fa-shield-heart"></i>
+                <div>
+                    <h4>Trusted Care</h4>
+                    <p>Safe & Reliable</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <i class="fa-solid fa-clock"></i>
+                <div>
+                    <h4>24/7 Support</h4>
+                    <p>Always Available</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT SECTION -->
+
+<section class="about-page">
+
+    <div class="about-image">
+
+        <img src="{% static 'images/hospital1.webp' %}" alt="Hospital">
+
+    </div>
+
+    <div class="about-content">
+
+        <h1>About CityCare Hospital</h1>
+
+        <p>
+            CityCare Hospital is a modern healthcare institution dedicated
+            to providing quality medical services, advanced treatments,
+            and compassionate patient care.
+        </p>
+
+        <p>
+            Our Hospital Management System provides patient registration,
+            appointment booking, medical record management, doctor
+            consultation, and administrative services in a digital platform.
+        </p>
+
+        <p>
+            With experienced doctors, advanced medical technology,
+            and 24/7 emergency support, we ensure the best healthcare
+            experience for every patient.
+        </p>
+    <div class="about-features">
+
+    <div class="about-feature">
+        <i class="fa-solid fa-truck-medical"></i>
+        <span>24/7 Emergency Care</span>
+    </div>
+
+    <div class="about-feature">
+        <i class="fa-solid fa-user-doctor"></i>
+        <span>Expert Doctors</span>
+    </div>
+
+    <div class="about-feature">
+        <i class="fa-solid fa-microscope"></i>
+        <span>Advanced Technology</span>
+    </div>
+
+    <div class="about-feature">
+        <i class="fa-solid fa-users"></i>
+        <span>500+ Happy Patients</span>
+    </div>
+
+</div>
+        <a href="/about/" class="btn">
+            Read More
+        </a>
+
+    </div>
+
+</section>
+
+<!-- FEATURES SECTION -->
+
+
+
+<!-- DEPARTMENTS SECTION -->
+
+<section class="departments">
+
+    <h2>Our Departments</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="{% static 'images/cardiolegy.webp' %}">
+            <h3>general medicine</h3>
+        </div>
+
+        <div class="card">
+            <img src="{% static 'images/neurolegy.webp' %}">
+            <h3>Neurology</h3>
+        </div>
+
+        <div class="card">
+            <img src="{% static 'images/orthopedics.webp' %}">
+            <h3>Orthopedics</h3>
+        </div>
+
+        <div class="card">
+            <img src="{% static 'images/pediatrics.webp' %}">
+            <h3>Pediatrics</h3>
+        </div>
+
+        <div class="card">
+            <img src="{% static 'images/emergency.webp' %}">
+            <h3>Emergency Care</h3>
+        </div>
+
+    </div>
+
+    <a href="/departments/" class="btn">
+        View All Departments
+    </a>
+
+</section>
+
+<!-- DOCTORS SECTION -->
+
+<section class="doctors">
+
+    <h2>Our Doctors</h2>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <img src="{% static 'images/dctr1.jpg' %}">
+
+            <h3>Dr. John Smith</h3>
+
+            <p>Cardiologist</p>
+
+            <a href="/appointment/" class="doctor-btn">
+                Book Appointment
+            </a>
+
+        </div>
+
+        <div class="card">
+
+            <img src="{% static 'images/dctr2.jpg' %}">
+
+            <h3>Dr. David Wilson</h3>
+
+            <p>Neurologist</p>
+
+            <a href="/appointment/" class="doctor-btn">
+                Book Appointment
+            </a>
+
+        </div>
+
+        <div class="card">
+
+            <img src="{% static 'images/dctr3.jpg' %}">
+
+            <h3>Dr. Sarah Brown</h3>
+
+            <p>Orthopedic Surgeon</p>
+
+            <a href="/appointment/" class="doctor-btn">
+                Book Appointment
+            </a>
+
+        </div>
+
+        <div class="card">
+
+            <img src="{% static 'images/dctr4.jpg' %}">
+
+            <h3>Dr. Emily Johnson</h3>
+
+            <p>Pediatric Specialist</p>
+
+            <a href="/appointment/" class="doctor-btn">
+                Book Appointment
+            </a>
+
+        </div>
+
+        
+    </div>
+
+    <a href="/doctors/" class="btn">
+        View All Doctors
+    </a>
+
+</section>
+
+<!-- ================= PATIENT TESTIMONIALS ================= -->
+
+<section class="testimonials">
+
+    <h2>What Our Patients Say</h2>
+
+    <p class="testimonial-subtitle">
+        Trusted by hundreds of patients for quality healthcare and compassionate service.
+    </p>
+
+    <div class="testimonial-container">
+
+        <div class="testimonial-card">
+
+            <i class="fa-solid fa-quote-left"></i>
+
+            <p>
+                "The doctors were very caring and professional.
+                Booking an appointment was quick and easy. I highly
+                recommend CityCare Hospital."
+            </p>
+
+            <h4>Rahul Sharma</h4>
+
+            <span>★★★★★</span>
+
+        </div>
+
+        <div class="testimonial-card">
+
+            <i class="fa-solid fa-quote-left"></i>
+
+            <p>
+                "Excellent medical services with friendly staff.
+                The hospital is clean, modern, and provides
+                outstanding patient care."
+            </p>
+
+            <h4>Anjali Nair</h4>
+
+            <span>★★★★★</span>
+
+        </div>
+
+        <div class="testimonial-card">
+
+            <i class="fa-solid fa-quote-left"></i>
+
+            <p>
+                "The online appointment system saved me a lot of
+                time. The doctors explained everything clearly and
+                provided excellent treatment."
+            </p>
+
+            <h4>Mohammed Asif</h4>
+
+            <span>★★★★★</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

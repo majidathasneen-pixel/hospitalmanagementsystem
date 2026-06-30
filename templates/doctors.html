@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="page-banner">
+
+    <h1>Meet Our Expert Doctors</h1>
+
+    <p>
+        Experienced specialists dedicated to your health and well-being.
+    </p>
+
+</section>
+<div class="cards">
+
+    <div class="card">
+
+        <img src="{% static 'images/dctr1.jpg' %}">
+
+        <h3>
+            <a href="{% url 'doctor_detail' 1 %}">
+                Dr. John Smith
+            </a>
+        </h3>
+
+        <p>Cardiologist</p>
+
+        <a href="/appointment/" class="doctor-btn">
+            Book Appointment
+        </a>
+
+    </div>
+
+    <div class="card">
+
+        <img src="{% static 'images/dctr2.jpg' %}">
+
+        <h3>
+            <a href="{% url 'doctor_detail' 2 %}">
+                Dr. David Wilson
+            </a>
+        </h3>
+
+        <p>Neurologist</p>
+
+        <a href="/appointment/" class="doctor-btn">
+            Book Appointment
+        </a>
+
+    </div>
+
+    <div class="card">
+
+        <img src="{% static 'images/dctr3.jpg' %}">
+
+        <h3>
+            <a href="{% url 'doctor_detail' 3 %}">
+                Dr. Sarah Brown
+            </a>
+        </h3>
+
+        <p>Orthopedic Surgeon</p>
+
+        <a href="/appointment/" class="doctor-btn">
+            Book Appointment
+        </a>
+
+    </div>
+
+    <div class="card">
+
+        <img src="{% static 'images/dctr4.jpg' %}">
+
+        <h3>
+            <a href="{% url 'doctor_detail' 4 %}">
+                Dr. Emily Johnson
+            </a>
+        </h3>
+
+        <p>Pediatric Specialist</p>
+
+        <a href="/appointment/" class="doctor-btn">
+            Book Appointment
+        </a>
+
+    </div>
+
+
+
+</div>
+
+{% endblock %}

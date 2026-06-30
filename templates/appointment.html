@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="appointment-section">
+
+    <div class="appointment-container">
+
+        <div class="appointment-header">
+            <h1>Book Appointment</h1>
+            <p>Schedule your appointment with our experienced doctors.</p>
+            <script>
+            setTimeout(function () {
+               const msg = document.querySelector('.success-message');
+               if (msg) {
+                   msg.style.display = 'none';
+                }
+            }, 3000);
+            </script>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+               <div style="background:#d4edda;color:#155724;padding:15px;border-radius:8px;border-left:6px solid #28a745;margin-bottom:20px;text-align:center;font-weight:bold;">
+                 ✅ {{ message }}
+               </div>
+            {% endfor %}
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="appointment-btn">
+                Book Appointment
+            </button>
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}
